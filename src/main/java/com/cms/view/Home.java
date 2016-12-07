@@ -12,8 +12,10 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.cms.component.CommonOnePanelUI;
 import com.cms.component.CustomPageTableFilter;
 import com.cms.dto.StatisticStaffPointDTO;
+import com.cms.login.ws.WSStatisticStaffPoint;
 import com.cms.ui.CommonTableFilterPanel;
 import com.cms.utils.BundleUtils;
+import com.cms.utils.DataUtil;
 import com.vaadin.data.Container;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.ExternalResource;
@@ -31,6 +33,7 @@ public class Home extends CommonOnePanelUI implements View {
             = BundleUtils.getHeadersFilter("statisticStaffPoint.header");
     private List<StatisticStaffPointDTO> lstStatisticStaffPoint;
     private BeanItemContainer beanContainer;
+    private final String CAPTION = BundleUtils.getString("caption.tbl.statistic.staff.point");
 
     public Home() {
         initHome();
@@ -38,24 +41,37 @@ public class Home extends CommonOnePanelUI implements View {
 
     private void buildPointLayout() {
         stasticPointLayout = new VerticalLayout();
-        
+        buildStatisticStaffPointTable();
+        stasticPointLayout.addComponent(tblPoints);
     }
-    
+
     private void buildStatisticStaffPointTable() {
         beanContainer = new BeanItemContainer<>(StatisticStaffPointDTO.class);
-        CommonFunctionTableFilter.initTable(tblPoints, HEADER, beanContainer, DESIGN_ATTR_PLAIN_TEXT, 0, DESIGN_ATTR_PLAIN_TEXT);
+        getListDatas();
+        if(!DataUtil.isListNullOrEmpty(lstStatisticStaffPoint)){
+            beanContainer.addAll(lstStatisticStaffPoint);
+        }
+        CommonFunctionTableFilter.initTable(tblPoints, HEADER, beanContainer, CAPTION, 25, "statisticStaffPoint");
+    }
+
+    private void getListDatas() {
+        try {
+            lstStatisticStaffPoint = WSStatisticStaffPoint.getListStatisticStaffPointDTO(new StatisticStaffPointDTO(), 0, 100, "asc", "staffName");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initHome() {
-        String URL = "https://thongtindoanhnghiep.co/api/company?k=";
-        BrowserFrame browser = new BrowserFrame("Tra cứu thông tin doanh nghiệp",
-                new ExternalResource("https://thongtindoanhnghiep.co"));
+//        String URL = "https://thongtindoanhnghiep.co/api/company?k=";
 //        BrowserFrame browser = new BrowserFrame("Tra cứu thông tin doanh nghiệp",
-//                new ExternalResource("http://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp"));
-        browser.setWidth("50%");
-        browser.setHeight("600px");
-
-        mainLayout.addComponent(browser);
+//                new ExternalResource("https://thongtindoanhnghiep.co"));
+////        BrowserFrame browser = new BrowserFrame("Tra cứu thông tin doanh nghiệp",
+////                new ExternalResource("http://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp"));
+//        browser.setWidth("50%");
+//        browser.setHeight("600px");
+        buildPointLayout();
+        mainLayout.addComponent(stasticPointLayout);
     }
 
     @Override
