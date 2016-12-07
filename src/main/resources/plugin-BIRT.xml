@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+">
+    <!--BIRT report-->
+<!--    <bean id="c3p0Conn" class="com.viettel.eafs.dataaccess.connector.C3P0DataSourceConnector" init-method="startup" destroy-method="shutdown" scope="singleton">
+        <property name="datasourceConfigFilePath" value="com/viettel/config/datasource/c3p0Datasources.xml" />
+    </bean>-->
+    
+    <bean id="birtConn" class="com.viettel.bi.plugin.birt.BIRTConnector" init-method="startup" destroy-method="shutdown" scope="singleton"></bean>
+    
+    <bean id="birtUtil" class="com.viettel.bi.plugin.birt.BIRTUtil" init-method="startup" destroy-method="shutdown" depends-on="birtConn" scope="singleton">
+        <property name="connector" ref="birtConn" />        
+        <!--Testing purpose-->
+        <property name="testMode" value="false" />
+        <property name="testReportDataMap">
+            <map>
+                <entry key="data" value="new_report" />
+                <entry key="data2" value="new_report_para2" />
+                <entry key="data3" value="new_report_para3" />
+                <entry key="param" value="new_report_para" />
+                <entry key="param_lib" value="new_report_para_lib" />
+                <entry key="param_toc" value="new_report_para_toc" />
+            </map>
+        </property>        
+    </bean>
+    <bean id="birtService" class="com.viettel.bi.plugin.birt.BIRTService" depends-on="birtUtil" scope="singleton">
+        <property name="util" ref="birtUtil" />
+    </bean>
+    <!--/-->
+    
+</beans>

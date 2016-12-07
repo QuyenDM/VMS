@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <!--comment khi build 64-->
+    <!--    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>securedapp</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>-->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+<!--    <context-param>
+        <param-name>heartbeatInterval</param-name>
+        <param-value>300</param-value>
+    </context-param>-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <!--Cau hinh BIRT-->
+<!--    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>            
+            classpath:spring-beans.xml
+        </param-value>
+    </context-param>-->
+<!--    <listener>
+        <listener-class>
+            com.viettel.eafs.web.listener.ServletUtilListener
+        </listener-class>
+    </listener>-->
+<!--    <listener>
+        <listener-class>
+            com.viettel.bi.plugin.birt.BIRTContextListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            com.viettel.bi.plugin.birt.BIRTSessionListener
+        </listener-class>
+    </listener>-->
+<!--    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>-->
+<!--    <listener>
+        <listener-class>
+            com.viettel.eafs.web.listener.EAFSListener
+        </listener-class>
+    </listener>-->
+</web-app>

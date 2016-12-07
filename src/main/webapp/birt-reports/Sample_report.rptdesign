@@ -1,0 +1,1797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <parameters>
+        <scalar-parameter name="prd_id" id="117">
+            <text-property name="promptText">Day</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">BirtDateTime.today()</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <cascading-parameter-group name="Location" id="123">
+            <text-property name="promptText">Location</text-property>
+            <property name="dataSet">PROVINCE</property>
+            <property name="dataSetMode">single</property>
+            <parameters>
+                <scalar-parameter name="Province" id="124">
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">true</property>
+                    <property name="dataSetName">PROVINCE</property>
+                    <expression name="valueExpr">row["PROVINCE_ID"]</expression>
+                    <expression name="labelExpr">row["PROVINCE_VNAME"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+                <scalar-parameter name="District" id="125">
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">true</property>
+                    <property name="dataSetName">PROVINCE</property>
+                    <expression name="valueExpr">row["AREA_CODE"]</expression>
+                    <expression name="labelExpr">row["AREA_NAME"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+            </parameters>
+        </cascading-parameter-group>
+        <cascading-parameter-group name="SUBTYPE" id="749">
+            <text-property name="promptText">SUBTYPE</text-property>
+            <property name="dataSet">PACKAGE</property>
+            <property name="dataSetMode">single</property>
+            <parameters>
+                <scalar-parameter name="CLASS_TYPE" id="750">
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">true</property>
+                    <property name="dataSetName">PACKAGE</property>
+                    <expression name="valueExpr">row["CLASS_ID"]</expression>
+                    <expression name="labelExpr">row["CLASS_NAME"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format"/>
+                </scalar-parameter>
+                <scalar-parameter name="SUB_TYPE" id="751">
+                    <property name="valueType">dynamic</property>
+                    <property name="isRequired">true</property>
+                    <property name="dataSetName">PACKAGE</property>
+                    <expression name="valueExpr">row["SUB_TYPE_ID"]</expression>
+                    <expression name="labelExpr">row["SUB_TYPE_NO"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="controlType">list-box</property>
+                    <property name="fixedOrder">true</property>
+                    <structure name="format"/>
+                </scalar-parameter>
+            </parameters>
+        </cascading-parameter-group>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaJndiName">BIRTDataSource</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="8">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">prd_id_1</property>
+                    <property name="paramName">prd_id</property>
+                    <property name="dataType">date</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">prd_id_2</property>
+                    <property name="paramName">prd_id</property>
+                    <property name="dataType">date</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">province_1</property>
+                    <property name="paramName">Province</property>
+                    <property name="dataType">string</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">province_2</property>
+                    <property name="paramName">Province</property>
+                    <property name="dataType">string</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">distinct_1</property>
+                    <property name="paramName">District</property>
+                    <property name="dataType">string</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">district_2</property>
+                    <property name="paramName">District</property>
+                    <property name="dataType">string</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">class_1</property>
+                    <property name="paramName">CLASS_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="position">7</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">class_2</property>
+                    <property name="paramName">CLASS_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="position">8</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">subtype_1</property>
+                    <property name="paramName">SUB_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="position">9</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">subtype_2</property>
+                    <property name="paramName">SUB_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="position">10</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PRD_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PROVINCE_VNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">AREA_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">CLASS_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">SUB_TYPE_NO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">T_ORG_COST</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">T_PROM_COST</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">T_TOT_COST</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PRD_ID</property>
+                    <property name="nativeName">PRD_ID</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PROVINCE_VNAME</property>
+                    <property name="nativeName">PROVINCE_VNAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">AREA_CODE</property>
+                    <property name="nativeName">AREA_CODE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CLASS_NAME</property>
+                    <property name="nativeName">CLASS_NAME</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">SUB_TYPE_NO</property>
+                    <property name="nativeName">SUB_TYPE_NO</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">T_ORG_COST</property>
+                    <property name="nativeName">T_ORG_COST</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">T_PROM_COST</property>
+                    <property name="nativeName">T_PROM_COST</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">T_TOT_COST</property>
+                    <property name="nativeName">T_TOT_COST</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select PRD_ID,PROVINCE_VNAME,AREA_CODE,CLASS_NAME,SUB_TYPE_NO,T_ORG_COST,T_PROM_COST,T_TOT_COST
+from sample_report
+where prd_id >= to_char(?,'yyyymmdd') and prd_id <= to_char(?,'yyyymmdd')
+and (province_id = ? or ? is null )
+and (area_code = ? or ? is null )
+and (CLASS_ID = ? or ? is null)
+and (SUB_TYPE_ID = ? or ? is null)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PRD_ID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>-127</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PRD_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PRD_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PROVINCE_NAME</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>540</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PROVINCE_NAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PROVINCE_NAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>540</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>AREA_NAME</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>540</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>AREA_NAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>AREA_NAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>540</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(NUM_USE_ORG_CHARGE)</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(NUM_USE_ORG_CHARGE)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(NUM_USE_ORG_CHARGE)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(ACCUM_ORG_CHARGE_SUBS)</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(ACCUM_ORG_CHARGE_SUBS)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(ACCUM_ORG_CHARGE_SUBS)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(T_ORG_COST)</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(T_ORG_COST)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(T_ORG_COST)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(T_ORG_ACCUM_COST)</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(T_ORG_ACCUM_COST)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(T_ORG_ACCUM_COST)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(NUM_USE_PROM_CHARGE)</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(NUM_USE_PROM_CHARGE)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(NUM_USE_PROM_CHARGE)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(ACCUM_PROM_CHARGE_SUBS)</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(ACCUM_PROM_CHARGE_SUBS)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(ACCUM_PROM_CHARGE_SUBS)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(T_PROM_COST)</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(T_PROM_COST)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(T_PROM_COST)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(T_PROM_ACCUM_COST)</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(T_PROM_ACCUM_COST)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(T_PROM_ACCUM_COST)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(NUM_ORG_CHARGE_3K3D_SUBS)</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(NUM_ORG_CHARGE_3K3D_SUBS)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(NUM_ORG_CHARGE_3K3D_SUBS)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SUM(T_ORG_3K3D_COST)</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>SUM(T_ORG_3K3D_COST)</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>SUM(T_ORG_3K3D_COST)</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PROVINCE" id="116">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">PROVINCE_NO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PROVINCE_NO</text-property>
+                    <text-property name="heading">PROVINCE_NO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROVINCE_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PROVINCE_NAME</text-property>
+                    <text-property name="heading">PROVINCE_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AREA_CODE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AREA_CODE</text-property>
+                    <text-property name="heading">AREA_CODE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROVINCE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">PROVINCE_ID</text-property>
+                    <text-property name="heading">PROVINCE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">IMPORT_DATA</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">IMPORT_DATA</text-property>
+                    <text-property name="heading">IMPORT_DATA</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AREA_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">AREA_ID</text-property>
+                    <text-property name="heading">AREA_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROVINCE_VNAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PROVINCE_VNAME</text-property>
+                    <text-property name="heading">PROVINCE_VNAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">GROUP_PROV</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">GROUP_PROV</text-property>
+                    <text-property name="heading">GROUP_PROV</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">AREA_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">AREA_NAME</text-property>
+                    <text-property name="heading">AREA_NAME</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">PROVINCE_NO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">PROVINCE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">AREA_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">PROVINCE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">IMPORT_DATA</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">AREA_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">PROVINCE_VNAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">GROUP_PROV</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">AREA_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">PROVINCE_NO</property>
+                    <property name="nativeName">PROVINCE_NO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">PROVINCE_NAME</property>
+                    <property name="nativeName">PROVINCE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">2005</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">AREA_CODE</property>
+                    <property name="nativeName">AREA_CODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">PROVINCE_ID</property>
+                    <property name="nativeName">PROVINCE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">IMPORT_DATA</property>
+                    <property name="nativeName">IMPORT_DATA</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">AREA_ID</property>
+                    <property name="nativeName">AREA_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">PROVINCE_VNAME</property>
+                    <property name="nativeName">PROVINCE_VNAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">GROUP_PROV</property>
+                    <property name="nativeName">GROUP_PROV</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">AREA_NAME</property>
+                    <property name="nativeName">AREA_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select * from D_PROVINCE_AREA
+order by province_vname, area_name]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="PACKAGE" id="716">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">SUB_TYPE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SUB_TYPE_ID</text-property>
+                    <text-property name="heading">SUB_TYPE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SUB_TYPE_NO</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SUB_TYPE_NO</text-property>
+                    <text-property name="heading">SUB_TYPE_NO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SUB_TYPE_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SUB_TYPE_NAME</text-property>
+                    <text-property name="heading">SUB_TYPE_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">COMMENTS</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">COMMENTS</text-property>
+                    <text-property name="heading">COMMENTS</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS1</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CLASS1</text-property>
+                    <text-property name="heading">CLASS1</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS2</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CLASS2</text-property>
+                    <text-property name="heading">CLASS2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">STATE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">STATE</text-property>
+                    <text-property name="heading">STATE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ENAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ENAME</text-property>
+                    <text-property name="heading">ENAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SYSTEM_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">SYSTEM_ID</text-property>
+                    <text-property name="heading">SYSTEM_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DCOM_TYPE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DCOM_TYPE_ID</text-property>
+                    <text-property name="heading">DCOM_TYPE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CLASS_ID</text-property>
+                    <text-property name="heading">CLASS_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS_TYPE_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">CLASS_TYPE_ID</text-property>
+                    <text-property name="heading">CLASS_TYPE_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TABLE_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TABLE_NAME</text-property>
+                    <text-property name="heading">TABLE_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASS_NAME</text-property>
+                    <text-property name="heading">CLASS_NAME</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CLASS_DESC</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CLASS_DESC</text-property>
+                    <text-property name="heading">CLASS_DESC</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SUB_TYPE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">SUB_TYPE_NO</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SUB_TYPE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">COMMENTS</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CLASS1</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">CLASS2</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">STATE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">ENAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">SYSTEM_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">DCOM_TYPE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">CLASS_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">CLASS_TYPE_ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">TABLE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">CLASS_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">CLASS_DESC</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">SUB_TYPE_ID</property>
+                    <property name="nativeName">SUB_TYPE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">SUB_TYPE_NO</property>
+                    <property name="nativeName">SUB_TYPE_NO</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">SUB_TYPE_NAME</property>
+                    <property name="nativeName">SUB_TYPE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">COMMENTS</property>
+                    <property name="nativeName">COMMENTS</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">CLASS1</property>
+                    <property name="nativeName">CLASS1</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">CLASS2</property>
+                    <property name="nativeName">CLASS2</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">STATE</property>
+                    <property name="nativeName">STATE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">ENAME</property>
+                    <property name="nativeName">ENAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">SYSTEM_ID</property>
+                    <property name="nativeName">SYSTEM_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">DCOM_TYPE_ID</property>
+                    <property name="nativeName">DCOM_TYPE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">CLASS_ID</property>
+                    <property name="nativeName">CLASS_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">CLASS_TYPE_ID</property>
+                    <property name="nativeName">CLASS_TYPE_ID</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">TABLE_NAME</property>
+                    <property name="nativeName">TABLE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">CLASS_NAME</property>
+                    <property name="nativeName">CLASS_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">CLASS_DESC</property>
+                    <property name="nativeName">CLASS_DESC</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select * 
+from D_SUB_TYPE 
+
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PACKAGE_NAME</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>64</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PACKAGE_NAME</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PACKAGE_NAME</design:label>
+            <design:formattingHints>
+              <design:displaySize>64</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>PACKAGE_ID</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>PACKAGE_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>PACKAGE_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>22</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="bg" id="100">
+            <property name="backgroundColor">#D7ECFF</property>
+        </style>
+        <style name="title" id="101">
+            <property name="backgroundColor">#D7ECFF</property>
+            <property name="fontSize">16px</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#0061B4</property>
+            <property name="paddingTop">10px</property>
+            <property name="paddingLeft">10px</property>
+            <property name="paddingBottom">10px</property>
+            <property name="paddingRight">10px</property>
+            <property name="textAlign">center</property>
+        </style>
+        <style name="wrap" id="102">
+            <property name="backgroundColor">#D7ECFF</property>
+            <property name="paddingTop">0px</property>
+            <property name="paddingLeft">0px</property>
+            <property name="paddingBottom">0px</property>
+            <property name="paddingRight">0px</property>
+        </style>
+        <style name="tables" id="103">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+            <property name="fontSize">12px</property>
+            <property name="borderBottomColor">#99BBE8</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderTopColor">#99BBE8</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+            <property name="lineHeight">23px</property>
+        </style>
+        <style name="tables-detail" id="104">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+            <property name="fontSize">12px</property>
+            <property name="borderBottomColor">#99BBE8</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderTopColor">#99BBE8</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+            <property name="lineHeight">23px</property>
+        </style>
+        <style name="tables-TOT" id="105">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+            <property name="fontSize">12px</property>
+            <property name="borderBottomColor">#99BBE8</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="lineHeight">23px</property>
+        </style>
+        <style name="table-th-row" id="106">
+            <property name="backgroundColor">#F5F5F5</property>
+            <property name="backgroundImage">URL(-1)</property>
+            <property name="backgroundPositionX">left</property>
+            <property name="backgroundPositionY">top</property>
+            <property name="backgroundRepeat">repeat-x</property>
+        </style>
+        <style name="table-th" id="107">
+            <property name="borderBottomColor">#BFBFBF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderRightColor">#BFBFBF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="paddingTop">0px</property>
+            <property name="paddingLeft">0px</property>
+            <property name="paddingBottom">0px</property>
+            <property name="paddingRight">0px</property>
+        </style>
+        <style name="table-th-div" id="108">
+            <property name="fontSize">12px</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#00519C</property>
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="paddingTop">0px</property>
+            <property name="paddingLeft">6px</property>
+            <property name="paddingBottom">0px</property>
+            <property name="paddingRight">6px</property>
+            <property name="textAlign">left</property>
+            <property name="lineHeight">23px</property>
+        </style>
+        <style name="table-row" id="109">
+            <property name="backgroundColor">#FAFAFA</property>
+        </style>
+        <style name="table-row-alt" id="110">
+            <property name="backgroundColor">#FFFFFF</property>
+        </style>
+        <style name="table-td" id="111">
+            <property name="borderBottomColor">#BFBFBF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderRightColor">#BFBFBF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+        </style>
+        <style name="table-td-div" id="112">
+            <property name="borderLeftColor">#FFFFFF</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1px</property>
+            <property name="paddingLeft">6px</property>
+            <property name="paddingRight">6px</property>
+        </style>
+        <style name="table-header-L" id="113">
+            <property name="fontSize">12px</property>
+            <property name="color">#4E89C6</property>
+            <property name="paddingTop">5px</property>
+            <property name="paddingLeft">6px</property>
+            <property name="paddingBottom">5px</property>
+            <property name="paddingRight">6px</property>
+            <property name="textAlign">left</property>
+        </style>
+        <style name="table-header-R" id="114">
+            <property name="fontSize">12px</property>
+            <property name="color">#4E89C6</property>
+            <property name="paddingTop">5px</property>
+            <property name="paddingLeft">6px</property>
+            <property name="paddingBottom">5px</property>
+            <property name="paddingRight">6px</property>
+            <property name="textAlign">right</property>
+        </style>
+        <style name="table-th-dim-title" id="115">
+            <property name="borderRightColor">#BFBFBF</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1px</property>
+            <property name="paddingTop">0px</property>
+            <property name="paddingLeft">0px</property>
+            <property name="paddingBottom">0px</property>
+            <property name="paddingRight">0px</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">custom</property>
+            <property name="height">10in</property>
+            <property name="width">20.16in</property>
+            <property name="rightMargin">7.78125in</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="188">
+            <property name="style">bg</property>
+            <property name="width">12.083333333333334in</property>
+            <column id="189">
+                <property name="width">12.083333333333334in</property>
+            </column>
+            <row id="190">
+                <property name="style">title</property>
+                <cell id="191">
+                    <property name="fontSize">16px</property>
+                    <property name="color">#0061B4</property>
+                    <label id="194">
+                        <property name="style">title</property>
+                        <text-property name="text">SAMPLE_REPORT</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="192">
+                <cell id="193">
+                    <table id="316">
+                        <property name="style">tables</property>
+                        <property name="width">11.989583333333334in</property>
+                        <property name="dataSet">Data Set</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">PRD_ID</property>
+                                <text-property name="displayName">PRD_ID</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PRD_ID"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">PROVINCE_VNAME</property>
+                                <text-property name="displayName">PROVINCE_VNAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["PROVINCE_VNAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">AREA_CODE</property>
+                                <text-property name="displayName">AREA_CODE</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["AREA_CODE"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">CLASS_NAME</property>
+                                <text-property name="displayName">CLASS_NAME</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["CLASS_NAME"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">SUB_TYPE_NO</property>
+                                <text-property name="displayName">SUB_TYPE_NO</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["SUB_TYPE_NO"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">T_ORG_COST</property>
+                                <text-property name="displayName">T_ORG_COST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["T_ORG_COST"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">T_PROM_COST</property>
+                                <text-property name="displayName">T_PROM_COST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["T_PROM_COST"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">T_TOT_COST</property>
+                                <text-property name="displayName">T_TOT_COST</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["T_TOT_COST"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation1</property>
+                                <property name="dataType">decimal</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["T_ORG_COST"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation 2</property>
+                                <property name="dataType">decimal</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["T_PROM_COST"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">Aggregation</property>
+                                <property name="dataType">decimal</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["T_TOT_COST"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="359">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="360">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="361">
+                            <property name="width">1.5in</property>
+                        </column>
+                        <column id="721">
+                            <property name="width">1.53125in</property>
+                        </column>
+                        <column id="363">
+                            <property name="width">1.4583333333333333in</property>
+                        </column>
+                        <column id="364">
+                            <property name="width">1.4895833333333333in</property>
+                        </column>
+                        <column id="365">
+                            <property name="width">1.59375in</property>
+                        </column>
+                        <column id="622">
+                            <property name="width">1.4166666666666667in</property>
+                        </column>
+                        <header>
+                            <row id="317">
+                                <property name="style">table-th-row</property>
+                                <property name="verticalAlign">middle</property>
+                                <cell id="318">
+                                    <property name="style">table-th</property>
+                                    <label id="527">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Date</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="319">
+                                    <property name="style">table-th</property>
+                                    <label id="525">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Province</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="320">
+                                    <property name="style">table-th</property>
+                                    <label id="725">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">District</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="718">
+                                    <property name="style">table-th</property>
+                                    <label id="523">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">CLASS_NAME</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="322">
+                                    <property name="style">table-th</property>
+                                    <label id="377">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">SUB_TYPE_NO</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="323">
+                                    <property name="style">table-th</property>
+                                    <label id="762">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Original charge</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="324">
+                                    <property name="style">table-th</property>
+                                    <label id="379">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Prom charge</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="619">
+                                    <property name="style">table-th</property>
+                                    <label id="763">
+                                        <property name="style">table-th-div</property>
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">Total charge</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="331">
+                                <property name="style">table-row</property>
+                                <cell id="332">
+                                    <property name="style">table-th</property>
+                                    <data id="757">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">PRD_ID</property>
+                                    </data>
+                                </cell>
+                                <cell id="333">
+                                    <property name="style">table-th</property>
+                                    <data id="758">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">PROVINCE_VNAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="334">
+                                    <property name="style">table-th</property>
+                                    <data id="759">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">AREA_CODE</property>
+                                    </data>
+                                </cell>
+                                <cell id="719">
+                                    <property name="style">table-th</property>
+                                    <data id="760">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">CLASS_NAME</property>
+                                    </data>
+                                </cell>
+                                <cell id="336">
+                                    <property name="style">table-th</property>
+                                    <data id="761">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">SUB_TYPE_NO</property>
+                                    </data>
+                                </cell>
+                                <cell id="337">
+                                    <property name="style">table-th</property>
+                                    <data id="764">
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">T_ORG_COST</property>
+                                    </data>
+                                </cell>
+                                <cell id="338">
+                                    <property name="style">table-th</property>
+                                    <data id="765">
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">T_PROM_COST</property>
+                                    </data>
+                                </cell>
+                                <cell id="620">
+                                    <property name="style">table-th</property>
+                                    <data id="766">
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">T_TOT_COST</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="345">
+                                <property name="style">table-row</property>
+                                <property name="verticalAlign">middle</property>
+                                <cell id="346">
+                                    <property name="colSpan">5</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">table-th</property>
+                                    <label id="756">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+                                        <property name="fontSize">14px</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#00519C</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">#FFFFFF</property>
+                                        <property name="borderLeftStyle">solid</property>
+                                        <property name="borderLeftWidth">1px</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">0px</property>
+                                        <property name="paddingLeft">6px</property>
+                                        <property name="paddingBottom">0px</property>
+                                        <property name="paddingRight">6px</property>
+                                        <property name="textAlign">center</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">23px</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <text-property name="text">TOTAL</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="351">
+                                    <property name="style">table-th</property>
+                                    <property name="textAlign">right</property>
+                                    <data id="767">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+                                        <property name="fontSize">12px</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#0080FF</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">23px</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <property name="resultSetColumn">Aggregation1</property>
+                                    </data>
+                                </cell>
+                                <cell id="352">
+                                    <property name="style">table-th</property>
+                                    <property name="textAlign">right</property>
+                                    <data id="768">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+                                        <property name="fontSize">12px</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#0080FF</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">23px</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <property name="resultSetColumn">Aggregation 2</property>
+                                    </data>
+                                </cell>
+                                <cell id="621">
+                                    <property name="style">table-th</property>
+                                    <data id="769">
+                                        <property name="backgroundAttachment">scroll</property>
+                                        <property name="backgroundPositionX">0%</property>
+                                        <property name="backgroundPositionY">0%</property>
+                                        <property name="backgroundRepeat">repeat</property>
+                                        <property name="fontFamily">"Arial", "Helvetica", sans-serif</property>
+                                        <property name="fontSize">12px</property>
+                                        <property name="fontWeight">bold</property>
+                                        <property name="fontStyle">normal</property>
+                                        <property name="fontVariant">normal</property>
+                                        <property name="color">#0080FF</property>
+                                        <property name="textLineThrough">none</property>
+                                        <property name="textOverline">none</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="borderBottomColor">black</property>
+                                        <property name="borderBottomStyle">none</property>
+                                        <property name="borderBottomWidth">medium</property>
+                                        <property name="borderLeftColor">black</property>
+                                        <property name="borderLeftStyle">none</property>
+                                        <property name="borderLeftWidth">medium</property>
+                                        <property name="borderRightColor">black</property>
+                                        <property name="borderRightStyle">none</property>
+                                        <property name="borderRightWidth">medium</property>
+                                        <property name="borderTopColor">black</property>
+                                        <property name="borderTopStyle">none</property>
+                                        <property name="borderTopWidth">medium</property>
+                                        <property name="marginTop">0pt</property>
+                                        <property name="marginLeft">0pt</property>
+                                        <property name="marginBottom">0pt</property>
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingTop">1pt</property>
+                                        <property name="paddingLeft">1pt</property>
+                                        <property name="paddingBottom">1pt</property>
+                                        <property name="paddingRight">1pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="letterSpacing">normal</property>
+                                        <property name="lineHeight">23px</property>
+                                        <property name="orphans">2</property>
+                                        <property name="textTransform">none</property>
+                                        <property name="whiteSpace">normal</property>
+                                        <property name="widows">2</property>
+                                        <property name="wordSpacing">normal</property>
+                                        <property name="display">block</property>
+                                        <property name="pageBreakAfter">auto</property>
+                                        <property name="pageBreakBefore">auto</property>
+                                        <property name="pageBreakInside">auto</property>
+                                        <property name="showIfBlank">false</property>
+                                        <property name="canShrink">false</property>
+                                        <property name="overflow">hidden</property>
+                                        <property name="resultSetColumn">Aggregation</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>

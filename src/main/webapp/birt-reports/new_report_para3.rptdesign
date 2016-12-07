@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 3.7.2.v20120213 Build &lt;3.7.2.v20120214-1408></property>
+    <property name="units">in</property>
+    <property name="theme">Sample.ClassicBlue</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">{/birt-libraries/Sample.rptlibrary}</property>
+            <property name="namespace">Sample</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="NewParameter1" id="58">
+            <text-property name="promptText">NewParameter1</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">Data Set</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["ID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["ID"]</expression>
+            <expression name="sortByColumn">dataSetRow["ID"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <!--
+            <property name="odaDriverClass">oracle.jdbc.driver.OracleDriver</property>
+            <property name="odaURL">jdbc:oracle:thin:@10.58.71.154:1521/BUOS</property>
+            <property name="odaUser">cn_thuntx</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">dGh1bnR4IzEyMw==</encrypted-property>
+			-->
+			<property name="odaJndiName">BIRTDataSource</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="8">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">NewParameter1</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">NewParameter1</property>
+                    <property name="dataType">string</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ID</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">NAMEEMPLOYEE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">UNIT</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">ID</property>
+                    <property name="nativeName">ID</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">NAMEEMPLOYEE</property>
+                    <property name="nativeName">NAMEEMPLOYEE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">UNIT</property>
+                    <property name="nativeName">UNIT</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select * from 
+CN_THUNTX.EMPLOYEE
+where id = ? or ? is null]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data Cube" id="186">
+            <property name="dimensions">
+                <tabular-dimension name="Groupunit" id="187">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="188">
+                            <property name="levels">
+                                <tabular-level name="UNIT" id="189">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">UNIT</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Groupid" id="210">
+                    <property name="defaultHierarchy">NewTabularHierarchy1</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy1" id="211">
+                            <property name="levels">
+                                <tabular-level name="ID" id="212">
+                                    <property name="dataType">decimal</property>
+                                    <property name="columnName">ID</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Summary Field" id="190">
+                    <property name="measures">
+                        <tabular-measure name="NAMEEMPLOYEE" id="191">
+                            <property name="function">count</property>
+                            <property name="isCalculated">false</property>
+                            <expression name="measureExpression" type="javascript">dataSetRow["NAMEEMPLOYEE"]</expression>
+                            <property name="dataType">integer</property>
+                            <property name="isVisible">true</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">Data Set</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="leftMargin">0.25in</property>
+            <property name="borderBottomColor">#000000</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderLeftColor">#000000</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderRightColor">#000000</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderTopColor">#000000</property>
+            <property name="borderTopStyle">solid</property>
+            <page-header>
+                <grid id="155">
+                    <property name="height">0.5104166666666666in</property>
+                    <column id="156"/>
+                    <column id="157"/>
+                    <column id="158"/>
+                    <row id="159">
+                        <property name="height">0.5104166666666666in</property>
+                        <cell id="160">
+                            <auto-text id="171">
+                                <property name="type">total-page</property>
+                            </auto-text>
+                        </cell>
+                        <cell id="161">
+                            <auto-text id="172">
+                                <property name="type">page-number</property>
+                            </auto-text>
+                        </cell>
+                        <cell id="162">
+                            <grid id="173">
+                                <column id="174"/>
+                                <column id="176"/>
+                                <row id="177">
+                                    <cell id="178">
+                                        <text id="179">
+                                            <property name="contentType">auto</property>
+                                            <text-property name="content"><![CDATA[Created by: ABC
+]]></text-property>
+                                        </text>
+                                    </cell>
+                                    <cell id="182">
+                                        <text id="183">
+                                            <property name="contentType">html</property>
+                                            <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                                        </text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="109">
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">UNIT</property>
+                    <text-property name="displayName">UNIT</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["UNIT"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NAMEEMPLOYEE</property>
+                    <text-property name="displayName">NAMEEMPLOYEE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NAMEEMPLOYEE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">COUNT</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["NAMEEMPLOYEE"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="122"/>
+            <column id="123"/>
+            <column id="124"/>
+            <header>
+                <row id="110">
+                    <cell id="111">
+                        <label id="125">
+                            <text-property name="text">UNIT</text-property>
+                        </label>
+                    </cell>
+                    <cell id="112">
+                        <label id="127">
+                            <text-property name="text">NAMEEMPLOYEE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="113">
+                        <label id="150">
+                            <text-property name="text">COUNT</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <group id="129">
+                <property name="groupName">GROUP_UNIT</property>
+                <expression name="keyExpr" type="javascript">row["UNIT"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["UNIT"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="130">
+                        <cell id="131">
+                            <data id="138">
+                                <property name="pageBreakAfter">auto</property>
+                                <property name="resultSetColumn">UNIT</property>
+                            </data>
+                        </cell>
+                        <cell id="132"/>
+                        <cell id="133"/>
+                    </row>
+                </header>
+                <footer>
+                    <row id="134">
+                        <cell id="135"/>
+                        <cell id="136"/>
+                        <cell id="137"/>
+                    </row>
+                </footer>
+            </group>
+            <group id="139">
+                <property name="groupName">GROUP_EMPNAME</property>
+                <expression name="keyExpr" type="javascript">row["NAMEEMPLOYEE"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["NAMEEMPLOYEE"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <footer>
+                    <row id="144">
+                        <cell id="145"/>
+                        <cell id="146"/>
+                        <cell id="147"/>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="114">
+                    <cell id="115"/>
+                    <cell id="116">
+                        <data id="152">
+                            <property name="resultSetColumn">NAMEEMPLOYEE</property>
+                        </data>
+                    </cell>
+                    <cell id="117">
+                        <data id="153">
+                            <property name="resultSetColumn">Aggregation</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="118">
+                    <cell id="119"/>
+                    <cell id="120"/>
+                    <cell id="121"/>
+                </row>
+            </footer>
+        </table>
+        <extended-item extensionName="Crosstab" extensionVersion="2.5.0" id="184">
+            <property name="cube">Data Cube</property>
+            <property name="measures">
+                <extended-item extensionName="MeasureView" id="197">
+                    <property name="measure">NAMEEMPLOYEE</property>
+                    <property name="detail">
+                        <extended-item extensionName="AggregationCell" id="198">
+                            <property name="aggregationOnRow">Groupid/ID</property>
+                            <property name="content">
+                                <data id="199">
+                                    <property name="resultSetColumn">NAMEEMPLOYEE_Groupid/ID</property>
+                                </data>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="header">
+                        <extended-item extensionName="CrosstabCell" id="200">
+                            <property name="content">
+                                <label id="201">
+                                    <text-property name="text">NAMEEMPLOYEE</text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="rows">
+                <extended-item extensionName="CrosstabView" id="192">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="213">
+                            <property name="dimension">Groupid</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View" id="214">
+                                    <property name="level">Groupid/ID</property>
+                                    <property name="pageBreakBefore">auto</property>
+                                    <property name="pageBreakAfter">auto</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="215">
+                                            <property name="content">
+                                                <data name="ID" id="216">
+                                                    <property name="resultSetColumn">ID</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                    <property name="pageBreakInterval">10</property>
+                                    <property name="pageBreakInside">avoid</property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="205"/>
+            </property>
+            <property name="header">
+                <extended-item extensionName="CrosstabCell" id="185"/>
+            </property>
+            <property name="repeatColumnHeader">true</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">NAMEEMPLOYEE</property>
+                    <expression name="expression">measure["NAMEEMPLOYEE"]</expression>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">ID</property>
+                    <expression name="expression">dimension["Groupid"]["ID"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">NAMEEMPLOYEE_Groupid/ID</property>
+                    <expression name="expression">measure["NAMEEMPLOYEE"]</expression>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>Groupid/ID</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+            </list-property>
+        </extended-item>
+    </body>
+</report>
